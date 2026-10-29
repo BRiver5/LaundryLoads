@@ -227,7 +227,7 @@ export function WhySheet({ load, onClose }: { load: Load | null; onClose: () => 
   return (
     <Sheet visible onClose={onClose} title="Why these go together" subtitle={`Score ${c.total.toFixed(2)} — lower is better. The planner picked the split of the whole hamper with the lowest total.`}>
       <Row label="One wash" value={c.base.toFixed(2)} note="Every load costs water, power and an hour — fewer loads is better." />
-      <Row label="Cooler than wanted" value={`+${c.hygiene.toFixed(2)}`} tone={c.hygiene > 0 ? t.colors.signal : undefined} note={c.hygiene > 0 ? `Runs at ${c.temp}° because of the most delicate label; towels and bedding prefer 60°.` : `Everything here is happy at ${c.temp}°.`} />
+      <Row label="Cooler than wanted" value={`+${c.hygiene.toFixed(2)}`} tone={c.hygiene > 0 ? t.colors.signal : undefined} note={c.hygiene > 0 ? `Runs at ${c.temp}° because of the most delicate label. ${load.entries.filter((e) => e.type.wantTemp > c.temp).map((e) => `${e.type.name} ${e.type.wantTemp}°`).join(", ")} would wash hotter alone.` : `Everything here is happy at ${c.temp}°.`} />
       <Row label="Gentle cycle" value={`+${c.gentle.toFixed(2)}`} tone={c.gentle > 0 ? t.colors.signal : undefined} note={c.delicate ? "A delicate item puts sturdy pieces on a gentler, less thorough cycle." : "Normal cycle."} />
       <Row label="Color risk" value={`+${c.bleed.toFixed(2)}`} tone={c.bleed > 0.3 ? t.colors.coral : undefined} note={pairs.length ? pairs.map((p) => `${p.a} + ${p.b}: ${Math.round(p.risk * 100)}%`).join(" · ") : "No color mixes that have ever caused trouble."} />
       <Row label="Half-empty drum" value={`+${c.underfill.toFixed(2)}`} note={`${c.kg.toFixed(1)} of ${settings.capKg} kg.`} />

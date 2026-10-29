@@ -72,7 +72,7 @@ export default function Hamper() {
                   <View style={{ flex: 1 }}>
                     <Text numberOfLines={1} style={{ ...t.typography.label, fontSize: 15, color: t.colors.ink }}>{x.name}</Text>
                     <Text numberOfLines={1} style={{ ...t.typography.caption, color: isFinite(days) && days < 2 ? t.colors.coral : t.colors.inkMuted }}>
-                      {x.max_temp}° {x.care === "delicate" ? "delicate" : ""} · {w.clean[x.id]} clean{isFinite(days) ? ` · ~${Math.floor(days)}d left` : ""}
+                      {x.max_temp}°{x.care === "delicate" ? " delicate" : ""} · {w.clean[x.id]} clean{isFinite(days) ? ` · ~${Math.floor(days)}d left` : ""}
                     </Text>
                   </View>
                   <Stepper value={n} min={0} max={60} onChange={async (v) => { await setHamper(x.id, v); await refresh(); }} />

@@ -81,8 +81,7 @@ export default function Home() {
               data={slots}
               horizontal
               pagingEnabled
-              snapToInterval={width}
-              decelerationRate="fast"
+              nestedScrollEnabled
               showsHorizontalScrollIndicator={false}
               keyExtractor={(s, i) => `${i}-${s.day}`}
               onMomentumScrollEnd={(e) => {
